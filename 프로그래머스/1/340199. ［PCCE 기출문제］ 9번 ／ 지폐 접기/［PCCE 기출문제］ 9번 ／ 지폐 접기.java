@@ -3,7 +3,7 @@ class Solution {
     public int solution(int[] wallet, int[] bill) {
         int answer = 0;
         
-        while(isContinue(wallet, bill)) {
+        while(max(wallet) < max(bill) || min(wallet) < min(bill)) {
             if(bill[0] > bill[1]) {
                 bill[0] = bill[0]/2;
             } else {
@@ -15,12 +15,11 @@ class Solution {
         return answer;
     }
     
-    private boolean isContinue(int[] wallet, int[] bill) {
-        int billMinValue = Math.min(bill[0], bill[1]);
-        int walletMinValue = Math.min(wallet[0], wallet[1]);
-        int billMaxValue = Math.max(bill[0], bill[1]);
-        int walletMaxValue = Math.max(wallet[0], wallet[1]);
-        
-        return billMinValue > walletMinValue || billMaxValue > walletMaxValue;
+    private int max(int[] arr) {
+        return Math.max(arr[0], arr[1]);
+    }
+
+    private int min(int[] arr) {
+        return Math.min(arr[0], arr[1]);
     }
 }
